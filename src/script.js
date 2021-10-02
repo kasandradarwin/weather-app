@@ -11,7 +11,7 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];
 let day = days[now.getDay()];
 
@@ -66,37 +66,28 @@ function changeCityName(event) {
   h1.innerHTML = newCityName;
 
   axios.get(apiUrl).then(displayWeather);
-
-  console.log(apiUrl);
-  console.log(axios);
-
-  //let displayTemperature = document.querySelector("#current-temp");
-
-  /// current actual temp, save to variable and then change the converters to refer to that instead.
-
-  // F converter
-  let toFahrenheit = document.querySelector("#current-temp");
-  let toCelsius = document.querySelector("#current-temp");
-  let defaultValue = toCelsius.innerHTML;
-
-  function toFahr(event) {
-    event.preventDefault();
-    toFahrenheit.innerHTML = `${Math.round(defaultValue * 1.8 + 32)}`;
-  }
-
-  let changeToFahr = document.querySelector("#fahrenheit");
-  changeToFahr.addEventListener("click", toFahr);
-
-  // C converter
-
-  function toCels(event) {
-    event.preventDefault();
-    toCelsius.innerHTML = defaultValue;
-  }
-
-  let changeToCels = document.querySelector("#celsius");
-  changeToCels.addEventListener("click", toCels);
 }
+/// current actual temp, save to variable and then change the converters to refer to that instead.
+
+// F converter
+function toFahr(event) {
+  event.preventDefault();
+  let toFahrenheit = document.querySelector("#current-temp");
+  toFahrenheit.innerHTML = `${Math.round(defaultValue * 1.8 + 32)}`;
+}
+
+let changeToFahr = document.querySelector("#fahrenheit");
+changeToFahr.addEventListener("click", toFahr);
+
+// C converter
+function toCels(event) {
+  event.preventDefault();
+  let toCelsius = document.querySelector("#current-temp");
+  toCelsius.innerHTML = defaultValue;
+}
+
+let changeToCels = document.querySelector("#celsius");
+changeToCels.addEventListener("click", toCels);
 
 let form = document.querySelector("form");
 form.addEventListener("submit", changeCityName);
